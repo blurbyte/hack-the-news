@@ -1,1 +1,11 @@
-//Story action types
+// Fetch action types
+export const REQUEST_STORY_WITH_COMMENTS = 'REQUEST_STORY_WITH_COMMENTS';
+export const REQUEST_STORY_WITH_COMMENTS_SUCCESS = 'REQUEST_STORY_WITH_COMMENTS_SUCCESS';
+
+export const REQUEST_FAIL = 'REQUEST_FAIL';
+
+// Story action types
+export const POPULATE_STORY = 'POPULATE_STORY';
+
+// Comments action types
+export const POPULATE_COMMENTS = 'POPULATE_COMMENTS';
