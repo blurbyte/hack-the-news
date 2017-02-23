@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 
 import { requestStoryWithComments } from '../../actions/fetchActions';
 
+import isEmpty from 'ramda/src/isEmpty';
+
+import StoryHeader from '../../components/StoryHeader';
+import CommentsList from '../../components/CommentsList';
+import Wrapper from './Wrapper';
+
 class Story extends React.Component {
   componentDidMount() {
     // provide storyId
@@ -10,8 +16,25 @@ class Story extends React.Component {
   }
 
   render() {
+    let content = (<div></div>);
+
+    let {story, comments} = this.props;
+
+    // checkis if story and comments have been loaded
+    if (!isEmpty(story) && !isEmpty(comments)) {
+      content = (
+        <div>
+          <StoryHeader story={story} />
+          <CommentsList root comments={comments} ids={story.children} />
+        </div>
+      );
+
+    }
+
     return (
-      <h1>Hack the News</h1>
+      <Wrapper>
+        {content}
+      </Wrapper>
     );
   }
 }
