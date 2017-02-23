@@ -2,6 +2,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-const rootReducer = combineReducers({ routing: routerReducer });
+import story from './storyReducer';
+import comments from './commentsReducer';
+
+const rootReducer = combineReducers({ story, comments, routing: routerReducer });
 
 export default rootReducer;
