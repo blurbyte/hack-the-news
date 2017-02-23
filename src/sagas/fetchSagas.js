@@ -5,6 +5,10 @@ import { requestStoryWithCommentsSuccess, requestStoryWithComments, requestFail 
 import { populateStory } from '../actions/storyActions';
 import { populateComments } from '../actions/commentsActions';
 
+// json normalize utility functions
+import normalizeStory from '../utilities/normalize/normalizeStory';
+import normalizeComments from '../utilities/normalize/normalizeComments';
+
 const API_PATH = 'https://node-hnapi.herokuapp.com/item/';
 
 // general purpose fetch function
@@ -38,13 +42,13 @@ export function* fetchStoryWithComments() {
 // populating story
 export function* separateStory() {
   const {data} = yield take(types.REQUEST_STORY_WITH_COMMENTS_SUCCESS);
-  yield put(populateStory(data));
+  yield put(populateStory(normalizeStory(data)));
 }
 
 // populating comments
 export function* separateComments() {
   const {data} = yield take(types.REQUEST_STORY_WITH_COMMENTS_SUCCESS);
-  yield put(populateComments(data));
+  yield put(populateComments(normalizeComments(data)));
 }
 
 export default function* fetchSagas() {
