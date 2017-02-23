@@ -9,7 +9,7 @@ const flattenComments = reduce((result, item) => {
     user: item.user,
     time: item.time,
     text: item.content,
-    comments: map(prop('id'), item.comments)
+    children: map(prop('id'), item.comments)
   };
 
   if (item.comments.length) {
