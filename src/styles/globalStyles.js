@@ -16,7 +16,13 @@ injectGlobal`
   body {
     background: #f4f0ed;
     overflow-y: scroll;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
+    /* text selection disabled */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
   }
 
   input, textarea, button, select, label, a {
@@ -25,12 +31,5 @@ injectGlobal`
 
   a {
     text-decoration: none;
-  }
-
-  p {
-    font-size: 1.4rem;
-    color: #444;
-    line-height: 1.4;
-    margin: 0.8rem 0;
   }
 `;
