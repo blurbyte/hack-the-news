@@ -6,13 +6,18 @@ import createSagaMiddleware from 'redux-saga';
 const sagaMiddleware = createSagaMiddleware();
 
 import rootReducer from './reducers';
+import fetchSagas from './sagas/fetchSagas';
 
 function configureStoreProd(initialState) {
   const middlewares = [
     sagaMiddleware
   ];
 
-  return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
+  const prodStore = createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
+
+  sagaMiddleware.run(fetchSagas);
+
+  return prodStore;
 }
 
 function configureStoreDev(initialState) {
@@ -32,6 +37,8 @@ function configureStoreDev(initialState) {
       devStore.replaceReducer(nextReducer);
     });
   }
+
+  sagaMiddleware.run(fetchSagas);
 
   return devStore;
 }
