@@ -1,13 +1,15 @@
 // store configuration (middlewares) depending on environment setting
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+
+const sagaMiddleware = createSagaMiddleware();
 
 import rootReducer from './reducers';
 
 function configureStoreProd(initialState) {
   const middlewares = [
-    thunk
+    sagaMiddleware
   ];
 
   return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
@@ -15,7 +17,7 @@ function configureStoreProd(initialState) {
 
 function configureStoreDev(initialState) {
   const middlewares = [
-    thunk,
+    sagaMiddleware,
     reduxImmutableStateInvariant()
   ];
 
