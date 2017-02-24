@@ -1,9 +1,15 @@
 import * as types from './actionTypes';
 
-export function requestStoryWithComments(storyId) {
+export function requestTopStoriesIds() {
   return {
-    type: types.REQUEST_STORY_WITH_COMMENTS,
-    storyId
+    type: types.REQUEST_TOP_STORIES_IDS
+  };
+}
+
+export function requestTopStoriesIdsSuccess(ids) {
+  return {
+    type: types.REQUEST_TOP_STORIES_IDS_SUCCESS,
+    ids
   };
 }
 

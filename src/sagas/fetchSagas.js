@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
-import { call, put, fork, take } from 'redux-saga/effects';
+import { call, put, fork, take, takeLatest } from 'redux-saga/effects';
 
-import { requestStoryWithCommentsSuccess, requestStoryWithComments, requestFail } from '../actions/fetchActions';
+import { requestStoryWithCommentsSuccess, requestTopStoriesIdsSuccess, requestFail } from '../actions/fetchActions';
 import { populateStory } from '../actions/storyActions';
 import { populateComments } from '../actions/commentsActions';
 
@@ -9,11 +9,15 @@ import { populateComments } from '../actions/commentsActions';
 import normalizeStory from '../utilities/normalize/normalizeStory';
 import normalizeComments from '../utilities/normalize/normalizeComments';
 
-const API_PATH = 'https://node-hnapi.herokuapp.com/item/';
+// takes random value from list
+import randomListValue from '../utilities/randomListValue';
+
+const STORY_WITH_COMMENTS_ENDPOINT = 'https://node-hnapi.herokuapp.com/item/';
+const TOP_STORIES_IDS_ENDPOINT = 'https://hacker-news.firebaseio.com/v0/topstories.json';
 
 // general purpose fetch function
-export function fetchItemsFromServer(id) {
-  return fetch(`${API_PATH}${id}`)
+export function fetchItemsFromServer(apiEndpoint, id = '') {
+  return fetch(`${apiEndpoint}${id}`)
     .then(response => {
       if (response.status >= 200 && response.status < 300) {
         return response.json();
@@ -24,14 +28,34 @@ export function fetchItemsFromServer(id) {
     });
 }
 
+// SAGA FLOW:
+// 1. Fetch a list of top stories from server
+// 2. Pick one random story id from a list
+// 3. Fetch story from server
+// 4. Populate store with story and comments
+
+// TODO
+// Put fetched ids in store
+// Add next random story functionality
+
+// fetch list of top stories ids
+export function* fetchTopStoriesIds() {
+  try {
+    const topStoriesIds = yield call(fetchItemsFromServer, TOP_STORIES_IDS_ENDPOINT);
+    yield put(requestTopStoriesIdsSuccess(topStoriesIds));
+  }
+  catch (err) {
+    yield put(requestFail(err.message));
+  }
+}
+
 // fetching stories
 export function* fetchStoryWithComments() {
   try {
     // get storyId
-    const {storyId} = yield take(types.REQUEST_STORY_WITH_COMMENTS);
-    yield put(requestStoryWithComments(storyId));
-    // fetch items from server based on passedId
-    const data = yield call(fetchItemsFromServer, storyId);
+    const {ids} = yield take(types.REQUEST_TOP_STORIES_IDS_SUCCESS);
+    // fetch items from server based on id randomply picked from a list
+    const data = yield call(fetchItemsFromServer, STORY_WITH_COMMENTS_ENDPOINT, randomListValue(ids));
     yield put(requestStoryWithCommentsSuccess(data));
   }
   catch (err) {
@@ -53,6 +77,7 @@ export function* separateComments() {
 
 export default function* fetchSagas() {
   yield [
+    takeLatest(types.REQUEST_TOP_STORIES_IDS, fetchTopStoriesIds),
     fork(fetchStoryWithComments),
     fork(separateStory),
     fork(separateComments)
