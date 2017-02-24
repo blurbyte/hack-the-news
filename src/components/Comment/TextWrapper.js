@@ -5,7 +5,7 @@ const TextWrapper = styled.div`
 
   & p {
     font-size: 3.6rem;
-    color: #444;
+    color: #666;
     line-height: 1.4;
     padding: 0;
     margin: 0;
@@ -13,7 +13,8 @@ const TextWrapper = styled.div`
   }
 
   & a {
-    color: rgba(254,110,13,0.75);
+    color: rgba(254,110,13,0.6);
+    word-wrap: break-word;
   }
 `;
 
