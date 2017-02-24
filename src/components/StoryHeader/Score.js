@@ -8,6 +8,8 @@ const Score = styled(Label)`
   font-weight: 400;
   border-radius: 1rem;
   padding: 1rem 1.6rem;
+  min-width: 7rem;
+  text-align: center;
 `;
 
 export default Score;
