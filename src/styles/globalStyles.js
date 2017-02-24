@@ -16,7 +16,10 @@ injectGlobal`
   body {
     background: #f4f0ed;
     overflow-y: scroll;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 3.6rem;
+    font-weight: 400;
+    color: #666;
     /* text selection disabled */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -26,6 +29,7 @@ injectGlobal`
   }
 
   input, textarea, button, select, label, a {
+     -webkit-tap-highlight-color: rgba(0,0,0,0);
     outline: none;
   }
 

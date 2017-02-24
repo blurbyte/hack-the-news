@@ -4,8 +4,6 @@ const TextWrapper = styled.div`
   padding: 0 4.2rem 2rem 4.2rem;
 
   & p {
-    font-size: 3.6rem;
-    color: #666;
     line-height: 1.4;
     padding: 0;
     margin: 0;
@@ -15,6 +13,15 @@ const TextWrapper = styled.div`
   & a {
     color: rgba(254,110,13,0.6);
     word-wrap: break-word;
+  }
+
+  & code {
+    color: #666;
+    line-height: 1.2;
+  }
+
+  & pre {
+    overflow: hidden;
   }
 `;
 
