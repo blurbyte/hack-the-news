@@ -1,10 +1,20 @@
 import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 
+import ChatBubbleIcon from '../Icons/ChatBubbleIcon';
+import FlexWrapper from '../FlexWrapper';
 import Label from './Label';
+
+const StyledLabel = styled(Label)`
+  margin-left: 1rem;
+`;
 
 const CommentsNumber = ({children}) => {
   return (
-    <Label>{children}</Label>
+    <FlexWrapper>
+      <ChatBubbleIcon fill="rgba(255,255,255,0.6)" />
+      <StyledLabel>{children}</StyledLabel>
+    </FlexWrapper>
   );
 };
 
