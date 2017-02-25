@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
+
 
 import { requestTopStoriesIds } from '../../actions/fetchActions';
 
@@ -27,6 +29,7 @@ class Story extends React.Component {
     if (!isEmpty(story)) {
       content = (
         <div>
+          <Helmet title={story.title} />
           <StoryHeader story={story} />
           {!isEmpty(comments) ? (<CommentsList root comments={comments} ids={story.children} />) : (<Message>There are no comments in this thread.</Message>)}
         </div>
