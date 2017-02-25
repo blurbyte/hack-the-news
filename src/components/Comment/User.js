@@ -11,19 +11,21 @@ const StyledUser = styled.p`
   display: block;
   margin-right: 4.2rem;
   margin-left: 1.4rem;
+  font-style: ${props => props.expanded ? 'normal' : 'oblique'};
 `;
 
-const User = ({user}) => {
+const User = ({user, expanded}) => {
   return (
     <FlexWrapper>
       <ProfileIcon />
-      <StyledUser>{user}</StyledUser>
+      <StyledUser expanded={expanded}>{user}</StyledUser>
     </FlexWrapper>
   );
 };
 
 User.propTypes = {
-  user: PropTypes.string
+  user: PropTypes.string,
+  expanded: PropTypes.bool
 };
 
 export default User;
