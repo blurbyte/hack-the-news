@@ -14,7 +14,7 @@ const StoryHeader = ({story}) => {
     <Header>
       <Headline>{story.title}</Headline>
       <Details>
-        <Score>{story.points}</Score>
+        <Score>{story.points || 0}</Score>
         <Label>{story.user}</Label>
         <Time time={story.time} />
         <CommentsNumber>{story.descendants}</CommentsNumber>
