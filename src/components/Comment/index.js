@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 
+import FlexWrapper from '../FlexWrapper';
 import StyledComment from './StyledComment';
 import TextWrapper from './TextWrapper';
 import InfoBar from './InfoBar';
 import User from './User';
 import Time from './Time';
+import ToggleIcon from './ToggleIcon';
 
 class Comment extends React.Component {
   constructor(props) {
@@ -28,8 +30,11 @@ class Comment extends React.Component {
     return (
       <StyledComment expanded={expanded}>
         <InfoBar onClick={this.handleToggle}>
-          <User expanded={expanded} user={comment.user} />
-          <Time time={comment.time} />
+          <FlexWrapper>
+            <User expanded={expanded} user={comment.user} />
+            <Time time={comment.time} />
+          </FlexWrapper>
+          <ToggleIcon expanded={expanded}/>
         </InfoBar>
         <TextWrapper dangerouslySetInnerHTML={{ __html: comment.text }} />
         {children}
