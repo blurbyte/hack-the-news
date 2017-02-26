@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-
 import { requestTopStoriesIds } from '../../actions/fetchActions';
 
 import isEmpty from 'ramda/src/isEmpty';
@@ -11,7 +10,7 @@ import StoryHeader from '../../components/StoryHeader';
 import CommentsList from '../../components/CommentsList';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import Wrapper from './Wrapper';
+import ContentWrapper from '../../components/ContentWrapper';
 
 class Story extends React.Component {
   componentDidMount() {
@@ -37,9 +36,9 @@ class Story extends React.Component {
     }
 
     return (
-      <Wrapper>
+      <ContentWrapper>
         {content}
-      </Wrapper>
+      </ContentWrapper>
     );
   }
 }
