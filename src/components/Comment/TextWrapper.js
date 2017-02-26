@@ -2,6 +2,14 @@ import styled from 'styled-components';
 
 const TextWrapper = styled.div`
   padding: 0 4.2rem 2rem 4.2rem;
+  /* text selection enabled */
+  -webkit-touch-callout: auto;
+  -webkit-user-select: auto;
+      -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
+
+  cursor: text;
 
   & p {
     line-height: 1.4;

@@ -36,4 +36,9 @@ injectGlobal`
   a {
     text-decoration: none;
   }
+
+  ::selection {
+    background: rgba(254,110,13,0.2);
+    color: inherit;
+  }
 `;
