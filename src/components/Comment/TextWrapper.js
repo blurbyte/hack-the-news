@@ -10,6 +10,10 @@ const TextWrapper = styled.div`
     padding-bottom: 3.2rem;
   }
 
+  & p:first-child {
+    margin-top: 1rem;
+  }
+
   & a {
     color: rgba(254,110,13,0.6);
     word-wrap: break-word;
@@ -22,6 +26,7 @@ const TextWrapper = styled.div`
 
   & pre {
     overflow: hidden;
+    margin-top: 0;
   }
 `;
 

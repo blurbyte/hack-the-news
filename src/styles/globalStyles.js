@@ -29,7 +29,7 @@ injectGlobal`
   }
 
   input, textarea, button, select, label, a, li {
-     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
     outline: none;
   }
 
