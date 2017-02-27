@@ -1,7 +1,7 @@
 {
   "name": "hack-the-news",
   "version": "1.0.0",
-  "description": "Simpler Hacker News",
+  "description": "Random Dose of Hacker News Stories",
   "scripts": {
     "preremove-demo": "npm run remove-dist",
     "remove-demo": "babel-node tools/removeDemo.js",
@@ -17,7 +17,8 @@
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "prebuild": "npm-run-all clean-dist test lint",
-    "build": "babel-node tools/build.js && npm run open:dist"
+    "build": "babel-node tools/build.js && npm run open:dist",
+    "deploy": "surge ./dist --domain hackthenews.surge.sh"
   },
   "repository": {
     "type": "git",
@@ -88,6 +89,7 @@
     "regenerator": "0.9.7",
     "rimraf": "2.5.4",
     "style-loader": "0.13.1",
+    "surge": "0.18.0",
     "url-loader": "0.5.7",
     "webpack": "2.2.1",
     "webpack-dev-middleware": "1.9.0",
