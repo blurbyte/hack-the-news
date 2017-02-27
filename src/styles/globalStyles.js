@@ -1,4 +1,5 @@
 import { injectGlobal } from 'styled-components';
+import media from './media';
 
 injectGlobal`
   html, body {
@@ -26,6 +27,7 @@ injectGlobal`
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    ${media.phone`font-size: 1.6rem;`}
   }
 
   input, textarea, button, select, label, a, li {
@@ -35,6 +37,11 @@ injectGlobal`
 
   a {
     text-decoration: none;
+  }
+
+  ::-moz-selection {
+    background: rgba(254,110,13,0.2);
+    color: inherit;
   }
 
   ::selection {

@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 const TextWrapper = styled.div`
   padding: 0 4.2rem 2.4rem 4.2rem;
+  ${media.phone`padding: 0 2.4rem 1rem 2.4rem;`}
+
   /* text selection enabled */
   -webkit-touch-callout: text;
   -webkit-user-select: text;
@@ -35,6 +38,7 @@ const TextWrapper = styled.div`
   & pre {
     overflow: hidden;
     margin-top: 0;
+    ${media.phone`overflow-x: scroll;`}
   }
 `;
 

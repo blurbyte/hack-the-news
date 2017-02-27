@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 import ArrowToggleIcon from '../Icons/ArrowToggleIcon';
 
@@ -11,10 +12,18 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${media.phone`
+    width: 2rem;
+    height: 2rem;
+  `}
 
-  & svg {
+  & .icon {
     transform: ${props => props.expanded ? 'rotate(0deg)' : 'rotate(90deg)'};
     transition: transform 0.1s linear;
+    ${media.phone`
+      width: 1.2rem;
+      height: 1.2rem;
+    `}
   }
 `;
 

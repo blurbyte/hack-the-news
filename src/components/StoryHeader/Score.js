@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 import Label from './Label';
 
@@ -10,6 +11,11 @@ const Score = styled(Label)`
   padding: 0.8rem 1.2rem;
   min-width: 5rem;
   text-align: center;
+
+  ${media.phone`
+    padding: 0.6rem 1rem;
+    min-width: 3.4rem;
+  `}
 `;
 
 export default Score;

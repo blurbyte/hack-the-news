@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 // components
 import Logo from '../Icons/Logo';
@@ -12,6 +13,17 @@ const ContentWrapper = styled(RegularContentWrapper)`
   height: 100%;
   align-items: center;
   padding: 0 4.2rem;
+
+  ${media.phone`
+    padding: 0 2.4rem;
+  `}
+
+  & .logo {
+    ${media.phone`
+      width: 44px;
+      height: 52px;
+    `}
+  }
 `;
 
 class Header extends React.Component {

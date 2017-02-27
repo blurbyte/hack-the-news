@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
+import media from '../../styles/media';
 
-import FlexWrapper from '../FlexWrapper';
+import RegularFlexWrapper from '../FlexWrapper';
 import ProfileIcon from '../Icons/ProfileIcon';
 
 const StyledUser = styled.p`
@@ -13,6 +14,19 @@ const StyledUser = styled.p`
   margin-left: 1.4rem;
   line-height: 2.8rem;
   transition: color 0.1s linear;
+  ${media.phone`
+    margin-right: 2.8rem;
+    margin-left: 0.6rem;
+  `}
+`;
+
+const FlexWrapper = styled(RegularFlexWrapper)`
+  & .icon {
+    ${media.phone`
+      width: 18px;
+      height: 18px;
+    `}
+  }
 `;
 
 const User = ({user, expanded}) => {

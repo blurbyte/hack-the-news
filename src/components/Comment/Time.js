@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 import RegularTime from '../Time';
-import FlexWrapper from '../FlexWrapper';
+import RegularFlexWrapper from '../FlexWrapper';
 import HourglassIcon from '../Icons/HourglassIcon';
 
 const StyledTime = styled(RegularTime)`
@@ -10,6 +11,16 @@ const StyledTime = styled(RegularTime)`
   display: block;
   margin-left: 1.4rem;
   line-height: 2.8rem;
+  ${media.phone`margin-left: 0.6rem;`}
+`;
+
+const FlexWrapper = styled(RegularFlexWrapper)`
+  & .icon {
+    ${media.phone`
+      width: 18px;
+      height: 18px;
+    `}
+  }
 `;
 
 const Time = ({time, className}) => {

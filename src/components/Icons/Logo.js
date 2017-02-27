@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const Logo = ({width = 44, height = 52}) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 44 52" aria-labelledby="title">
+  <svg className="logo" xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 44 52" aria-labelledby="title">
     <title id="title">Hack the News</title>
     <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="14.294" y1="28.253" x2="-12.817" y2="1.142">
       <stop offset="0" stopColor="#FA370A" />

@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 import ExternalLinkIcon from '../Icons/ExternalLinkIcon';
-import FlexWrapper from '../FlexWrapper';
+import RegularFlexWrapper from '../FlexWrapper';
 import RegularLink from '../Link';
 
 const Link = styled(RegularLink)`
@@ -14,6 +15,17 @@ const Link = styled(RegularLink)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  ${media.phone`margin-left: 1rem;`}
+`;
+
+const FlexWrapper = styled(RegularFlexWrapper)`
+  & .icon {
+    ${media.phone`
+      width: 22px;
+      height: 18px;
+    `}
+  }
 `;
 
 const ExternalLink = ({href, children}) => {
