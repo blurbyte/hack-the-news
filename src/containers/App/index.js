@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <AppWrapper>
-        <Helmet titleTemplate="%s | Hack the News" defaultTitle="Hack the News" meta={[{ name: 'description', content: 'Simple Hacker News Demo' }]} />
+        <Helmet titleTemplate="%s | Hack the News" defaultTitle="Hack the News" meta={[{ name: 'description', content: 'Random Dose of Hacker News Stories' }]} />
         <Header />
         {this.props.children}
       </AppWrapper>
