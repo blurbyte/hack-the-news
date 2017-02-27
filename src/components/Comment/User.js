@@ -5,19 +5,20 @@ import FlexWrapper from '../FlexWrapper';
 import ProfileIcon from '../Icons/ProfileIcon';
 
 const StyledUser = styled.p`
-  color: #fe6e0d;
+  color: ${props => props.expanded ? '#fe6e0d' : 'rgba(254,110,13,0.6)'};
   letter-spacing: -0.1rem;
   margin: 0;
   display: block;
   margin-right: 4.2rem;
   margin-left: 1.4rem;
-  font-style: ${props => props.expanded ? 'normal' : 'oblique'};
+  line-height: 2.8rem;
+  transition: color 0.1s linear;
 `;
 
 const User = ({user, expanded}) => {
   return (
     <FlexWrapper>
-      <ProfileIcon />
+      <ProfileIcon width={28} height={28}/>
       <StyledUser expanded={expanded}>{user}</StyledUser>
     </FlexWrapper>
   );

@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import ArrowToggleIcon from '../Icons/ArrowToggleIcon';
 
 const Wrapper = styled.div`
-  width: 3.6rem;
-  height: 3.6rem;
-  border-radius: 1rem;
-  background-color: #ccc;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.6rem;
+  background-color: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 const ToggleIcon = ({expanded}) => {
   return (
     <Wrapper expanded={expanded}>
-      <ArrowToggleIcon />
+      <ArrowToggleIcon width={18} height={18} />
     </Wrapper>
   );
 };

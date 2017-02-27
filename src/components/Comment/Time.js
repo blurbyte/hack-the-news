@@ -9,12 +9,13 @@ const StyledTime = styled(RegularTime)`
   color: #aaa;
   display: block;
   margin-left: 1.4rem;
+  line-height: 2.8rem;
 `;
 
 const Time = ({time, className}) => {
   return (
     <FlexWrapper>
-      <HourglassIcon />
+      <HourglassIcon width={19} height={28}/>
       <StyledTime time={time} className={className} />
     </FlexWrapper>
   );

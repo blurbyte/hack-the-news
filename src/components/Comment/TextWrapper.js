@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 const TextWrapper = styled.div`
-  padding: 0 4.2rem 2rem 4.2rem;
+  padding: 0 4.2rem 2.4rem 4.2rem;
   /* text selection enabled */
-  -webkit-touch-callout: auto;
-  -webkit-user-select: auto;
-      -moz-user-select: auto;
-      -ms-user-select: auto;
-          user-select: auto;
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
 
   cursor: text;
 
@@ -15,7 +15,7 @@ const TextWrapper = styled.div`
     line-height: 1.4;
     padding: 0;
     margin: 0;
-    padding-bottom: 3.2rem;
+    padding-bottom: 1.8rem;
   }
 
   & p:first-child {

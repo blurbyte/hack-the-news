@@ -19,7 +19,7 @@ const Link = styled(RegularLink)`
 const ExternalLink = ({href, children}) => {
   return (
     <FlexWrapper>
-      <ExternalLinkIcon fill="rgba(255,255,255,0.6)" />
+      <ExternalLinkIcon width={32} height={24} fill="rgba(255,255,255,0.6)" />
       <Link href={href} target="_blank">{children}</Link>
     </FlexWrapper>
   );

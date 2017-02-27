@@ -12,7 +12,7 @@ const StyledLabel = styled(Label)`
 const CommentsNumber = ({children}) => {
   return (
     <FlexWrapper>
-      <ChatBubbleIcon fill="rgba(255,255,255,0.6)" />
+      <ChatBubbleIcon width={28} height={28} fill="rgba(255,255,255,0.6)" />
       <StyledLabel>{children}</StyledLabel>
     </FlexWrapper>
   );

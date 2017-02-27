@@ -17,7 +17,7 @@ injectGlobal`
     background: #f4f0ed;
     overflow-y: scroll;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 3.6rem;
+    font-size: 2.4rem;
     font-weight: 400;
     color: #666;
     /* text selection disabled */

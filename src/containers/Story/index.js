@@ -10,11 +10,11 @@ import StoryHeader from '../../components/StoryHeader';
 import CommentsList from '../../components/CommentsList';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import ContentWrapper from '../../components/ContentWrapper';
+import ContentWrapper from './ContentWrapper';
 
 class Story extends React.Component {
   componentDidMount() {
-    // provide storyId
+    // fetch top HN stories and randomly pick one
     this.props.requestTopStoriesIds();
   }
 

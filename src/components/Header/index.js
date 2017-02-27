@@ -9,6 +9,7 @@ import Tagline from './Tagline';
 
 const ContentWrapper = styled(RegularContentWrapper)`
   display: flex;
+  height: 100%;
   align-items: center;
   padding: 0 4.2rem;
 `;
@@ -23,7 +24,7 @@ class Header extends React.Component {
     return (
       <Banner>
         <ContentWrapper>
-          <Logo width={88} height={104} />
+          <Logo width={66} height={78} />
           <Tagline>Random Dose<br /> of Hacker News<br />Stories</Tagline>
         </ContentWrapper>
       </Banner>

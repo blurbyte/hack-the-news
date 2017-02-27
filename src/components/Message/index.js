@@ -5,8 +5,9 @@ const Message = styled.p`
   background-color: #fffcfb;
   font-style: oblique;
   padding: 4.2rem;
+  padding-top: 3.8rem;
   margin: 0;
-  border-top: 4px solid #f4f0ed;
+  border-top: 2px solid #f4f0ed;
 `;
 
 export default Message;

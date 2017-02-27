@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Tagline = styled.p`
   color: #fa370a;
   font-weight: 300;
-  font-size: 2.8rem;
+  font-size: 2rem;
   text-transform: uppercase;
   line-height: 1.2;
   margin-left: 3.2rem;
