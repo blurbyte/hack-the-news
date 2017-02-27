@@ -52,6 +52,7 @@ export default {
       debug: false
     }),
     new OfflinePlugin({
+      AppCache: false,
       relativePaths: false,
       publicPath: '/',
       autoUpdate: 1000 * 60 * 60 * 4
