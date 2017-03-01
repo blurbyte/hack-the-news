@@ -15,4 +15,6 @@ Notable technologies used: __React__, __Redux__, __Redux Saga__, __Webpack2__, _
 
 ###How it works?
 
-First, app gets a list of top Hacker News stories from regular HN API. After that it picks random story and fetch its comments with [custom HN API](https://github.com/cheeaun/node-hnapi).
+First, app gets a list of top Hacker News stories from regular HN API. After that it picks random story and fetch its comments from [custom HN API](https://github.com/cheeaun/node-hnapi).
+
+WARNING! Project contains hand-crafted logo and icons.
