@@ -15,6 +15,7 @@ const StyledTime = styled(RegularTime)`
 `;
 
 const FlexWrapper = styled(RegularFlexWrapper)`
+  min-width: 10rem;
   & .icon {
     ${media.phone`
       width: 18px;

@@ -12,6 +12,8 @@ const InfoBar = styled.div`
   ${media.phone`
     padding: 1.6rem 2.4rem 2.2rem 2.4rem;
     height: 6.6rem;
+    width: 100%;
+    overflow-x: scroll;
   `}
 `;
 

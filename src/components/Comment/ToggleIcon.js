@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   ${media.phone`
     width: 2rem;
     height: 2rem;
