@@ -8,6 +8,7 @@ import isEmpty from 'ramda/src/isEmpty';
 
 import StoryHeader from '../../components/StoryHeader';
 import CommentsList from '../../components/CommentsList';
+import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import ContentWrapper from './ContentWrapper';
@@ -31,6 +32,7 @@ class Story extends React.Component {
           <Helmet title={story.title} />
           <StoryHeader story={story} />
           {!isEmpty(comments) ? (<CommentsList root comments={comments} ids={story.children} />) : (<Message>There are no comments in this thread.</Message>)}
+          <Footer />
         </div>
       );
     }
