@@ -77,3 +77,5 @@ export const storeComments = {
     children: []
   }
 };
+
+export const topStoriesIds = [123456, 123457, 123676, 247890];

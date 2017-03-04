@@ -1,5 +1,5 @@
 import * as types from '../actions/actionTypes';
-import { call, put, fork, take, takeLatest } from 'redux-saga/effects';
+import { call, put, fork, take, select, takeLatest } from 'redux-saga/effects';
 
 import { requestStoryWithCommentsSuccess, requestTopStoriesIdsSuccess, requestFail } from '../actions/fetchActions';
 import { populateStory } from '../actions/storyActions';
@@ -49,11 +49,15 @@ export function* fetchTopStoriesIds() {
   }
 }
 
+export const topStoriesIdsFromState = (state) => state.topStoriesIds;
+
 // fetching stories
 export function* fetchStoryWithComments() {
   try {
-    // get storyId
-    const {ids} = yield take(types.REQUEST_TOP_STORIES_IDS_SUCCESS);
+    // wait for topStories Ids to be fetched from server
+    yield take(types.REQUEST_TOP_STORIES_IDS_SUCCESS);
+    // get topStoriesIds from redux store
+    const ids = yield select(topStoriesIdsFromState);
     // fetch items from server based on id randomply picked from a list
     const data = yield call(fetchItemsFromServer, STORY_WITH_COMMENTS_ENDPOINT, randomListValue(ids));
     yield put(requestStoryWithCommentsSuccess(data));

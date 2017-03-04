@@ -4,7 +4,8 @@ import { routerReducer } from 'react-router-redux';
 
 import story from './storyReducer';
 import comments from './commentsReducer';
+import topStoriesIds from './topStoriesIdsReducer';
 
-const rootReducer = combineReducers({ story, comments, routing: routerReducer });
+const rootReducer = combineReducers({ story, comments, topStoriesIds, routing: routerReducer });
 
 export default rootReducer;

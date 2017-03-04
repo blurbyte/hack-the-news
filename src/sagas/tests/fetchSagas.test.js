@@ -1,5 +1,5 @@
-import { fetchTopStoriesIds, fetchStoryWithComments, fetchItemsFromServer } from '../fetchSagas';
-import { call, put, take } from 'redux-saga/effects';
+import { fetchTopStoriesIds, fetchStoryWithComments, fetchItemsFromServer, topStoriesIdsFromState } from '../fetchSagas';
+import { call, put, take, select } from 'redux-saga/effects';
 
 import { fetchedStory } from '../../utilities/testHelpers';
 
@@ -36,6 +36,13 @@ describe('fetchStoryWithComments saga', () => {
     output = saga.next().value;
     let expected = take('REQUEST_TOP_STORIES_IDS_SUCCESS');
     done();
+
+    expect(output).toEqual(expected);
+  });
+
+  it('should select top stories ids from the store', () => {
+    output = saga.next().value;
+    let expected = select(topStoriesIdsFromState);
 
     expect(output).toEqual(expected);
   });

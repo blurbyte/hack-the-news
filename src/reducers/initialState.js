@@ -1,4 +1,5 @@
 export default {
   story: {},
-  comments: {}
+  comments: {},
+  topStoriesIds: []
 };
