@@ -13,6 +13,12 @@ export function requestTopStoriesIdsSuccess(ids) {
   };
 }
 
+export function requestStoryWithComments() {
+  return {
+    type: types.REQUEST_STORY_WITH_COMMENTS
+  };
+}
+
 export function requestStoryWithCommentsSuccess(data) {
   return {
     type: types.REQUEST_STORY_WITH_COMMENTS_SUCCESS,

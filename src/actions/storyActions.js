@@ -6,3 +6,9 @@ export function populateStory(story) {
     story
   };
 }
+
+export function clearStory() {
+  return {
+    type: types.CLEAR_STORY
+  };
+}

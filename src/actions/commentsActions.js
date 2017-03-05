@@ -6,3 +6,9 @@ export function populateComments(comments) {
     comments
   };
 }
+
+export function clearComments() {
+  return {
+    type: types.CLEAR_COMMENTS
+  };
+}
