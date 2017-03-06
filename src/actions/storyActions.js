@@ -1,8 +1,8 @@
 import * as types from './actionTypes';
 
-export function populateStory(story) {
+export function requestStorySuccess(story) {
   return {
-    type: types.POPULATE_STORY,
+    type: types.REQUEST_STORY_SUCCESS,
     story
   };
 }

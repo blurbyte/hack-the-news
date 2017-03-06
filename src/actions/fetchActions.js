@@ -19,13 +19,6 @@ export function requestStoryWithComments() {
   };
 }
 
-export function requestStoryWithCommentsSuccess(data) {
-  return {
-    type: types.REQUEST_STORY_WITH_COMMENTS_SUCCESS,
-    data
-  };
-}
-
 export function requestFail(message) {
   return {
     type: types.REQUEST_FAIL,

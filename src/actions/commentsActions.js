@@ -1,8 +1,8 @@
 import * as types from './actionTypes';
 
-export function populateComments(comments) {
+export function requestCommentsSuccess(comments) {
   return {
-    type: types.POPULATE_COMMENTS,
+    type: types.REQUEST_COMMENTS_SUCCESS,
     comments
   };
 }
