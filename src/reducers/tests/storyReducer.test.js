@@ -13,7 +13,7 @@ describe('comments reducer', () => {
     const stateAfter = storeStory;
 
     // act
-    const action = actions.populateStory(stateAfter);
+    const action = actions.requestStorySuccess(stateAfter);
 
     Object.freeze(stateBefore);
     Object.freeze(action);
