@@ -1,19 +1,20 @@
-import styled from 'styled-components';
-import media from '../../styles/media';
+import React, { PropTypes } from 'react';
 
-const Footer = styled.footer`
-  width: 100%;
-  height: 8rem;
-  background-color: #fff;
-  border-top: 2px solid #f4f0ed;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  padding: 0 4.2rem;
-  display: flex;
-  align-items: center;
+import StyledFooter from './StyledFooter';
+import Wrapper from './Wrapper';
 
-  ${media.phone`padding: 0 2.4rem;`}
-`;
+const Footer = ({ children }) => {
+  return (
+    <StyledFooter>
+      <Wrapper>
+        {children}
+      </Wrapper>
+    </StyledFooter>
+  );
+};
+
+Footer.propTypes = {
+  children: PropTypes.node
+};
 
 export default Footer;
