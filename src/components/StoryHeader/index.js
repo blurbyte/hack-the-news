@@ -19,7 +19,7 @@ const StoryHeader = ({story}) => {
         <Time time={story.time} />
         <CommentsNumber>{story.descendants}</CommentsNumber>
       </Details>
-      <ExternalLink href={story.url}>{story.url}</ExternalLink>
+      <ExternalLink href={story.url} />
     </Header>
   );
 };

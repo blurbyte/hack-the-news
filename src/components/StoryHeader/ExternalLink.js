@@ -6,6 +6,8 @@ import ExternalLinkIcon from '../Icons/ExternalLinkIcon';
 import RegularFlexWrapper from '../FlexWrapper';
 import RegularLink from '../Link';
 
+import fixedInternalHref from '../../utilities/fixedInternalHref';
+
 const Link = styled(RegularLink)`
   color: rgba(255,255,255,0.75);
   display: block;
@@ -19,7 +21,7 @@ const Link = styled(RegularLink)`
   ${media.phone`margin-left: 1rem;`}
 `;
 
-const FlexWrapper = styled(RegularFlexWrapper)`
+const FlexWrapper = styled(RegularFlexWrapper) `
   & .icon {
     ${media.phone`
       width: 22px;
@@ -28,18 +30,18 @@ const FlexWrapper = styled(RegularFlexWrapper)`
   }
 `;
 
-const ExternalLink = ({href, children}) => {
+const ExternalLink = ({ href }) => {
+  href = fixedInternalHref(href);
   return (
     <FlexWrapper>
       <ExternalLinkIcon width={32} height={24} fill="rgba(255,255,255,0.6)" />
-      <Link href={href} target="_blank">{children}</Link>
+      <Link href={href} target="_blank">{href}</Link>
     </FlexWrapper>
   );
 };
 
 ExternalLink.propTypes = {
-  href: PropTypes.string,
-  children: PropTypes.node
+  href: PropTypes.string
 };
 
 export default ExternalLink;
