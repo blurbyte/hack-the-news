@@ -1,9 +1,10 @@
+/*eslint no-constant-condition: ["error", { "checkLoops": false }]*/
 import * as types from '../actions/actionTypes';
 import { call, put, fork, take, select, takeLatest } from 'redux-saga/effects';
 
-import { requestStoryWithCommentsSuccess, requestTopStoriesIdsSuccess, requestFail } from '../actions/fetchActions';
-import { populateStory } from '../actions/storyActions';
-import { populateComments } from '../actions/commentsActions';
+import { requestTopStoriesIdsSuccess, requestFail } from '../actions/fetchActions';
+import { requestStorySuccess, clearStory } from '../actions/storyActions';
+import { requestCommentsSuccess, clearComments } from '../actions/commentsActions';
 
 // json normalize utility functions
 import normalizeStory from '../utilities/normalize/normalizeStory';
@@ -29,14 +30,10 @@ export function fetchItemsFromServer(apiEndpoint, id = '') {
 }
 
 // SAGA FLOW:
-// 1. Fetch a list of top stories from server
-// 2. Pick one random story id from a list
+// 1. Fetch a list of top stories from server and put it into store
+// 2. Pick one random story id from the store
 // 3. Fetch story from server
 // 4. Populate store with story and comments
-
-// TODO
-// Put fetched ids in store
-// Add next random story functionality
 
 // fetch list of top stories ids
 export function* fetchTopStoriesIds() {
@@ -51,39 +48,49 @@ export function* fetchTopStoriesIds() {
 
 export const topStoriesIdsFromState = (state) => state.topStoriesIds;
 
-// fetching stories
-export function* fetchStoryWithComments() {
+// fetching random stories
+export function* fetchRandomStoryWithComments() {
   try {
-    // wait for topStories Ids to be fetched from server
-    yield take(types.REQUEST_TOP_STORIES_IDS_SUCCESS);
     // get topStoriesIds from redux store
     const ids = yield select(topStoriesIdsFromState);
     // fetch items from server based on id randomply picked from a list
     const data = yield call(fetchItemsFromServer, STORY_WITH_COMMENTS_ENDPOINT, randomListValue(ids));
-    yield put(requestStoryWithCommentsSuccess(data));
+    // populates story and comments
+    yield [
+      put(requestStorySuccess(normalizeStory(data))),
+      put(requestCommentsSuccess(normalizeComments(data)))
+    ];
   }
   catch (err) {
     yield put(requestFail(err.message));
   }
 }
 
-// populating story
-export function* separateStory() {
-  const {data} = yield take(types.REQUEST_STORY_WITH_COMMENTS_SUCCESS);
-  yield put(populateStory(normalizeStory(data)));
+// fetching first random story with comments on app startup
+// after top stories got fetched
+export function* fetchStoryOnStarup() {
+  yield take(types.REQUEST_TOP_STORIES_IDS_SUCCESS);
+  yield call(fetchRandomStoryWithComments);
 }
 
-// populating comments
-export function* separateComments() {
-  const {data} = yield take(types.REQUEST_STORY_WITH_COMMENTS_SUCCESS);
-  yield put(populateComments(normalizeComments(data)));
+// fetching random story after button got pressed
+export function* fetchNextRandomStory() {
+  while (true) {
+    yield take(types.REQUEST_STORY_WITH_COMMENTS);
+
+    yield [
+      put(clearStory()),
+      put(clearComments())
+    ];
+
+    yield call(fetchRandomStoryWithComments);
+  }
 }
 
 export default function* fetchSagas() {
   yield [
     takeLatest(types.REQUEST_TOP_STORIES_IDS, fetchTopStoriesIds),
-    fork(fetchStoryWithComments),
-    fork(separateStory),
-    fork(separateComments)
+    fork(fetchStoryOnStarup),
+    fork(fetchNextRandomStory)
   ];
 }

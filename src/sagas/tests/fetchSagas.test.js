@@ -1,4 +1,4 @@
-import { fetchTopStoriesIds, fetchStoryWithComments, fetchItemsFromServer, topStoriesIdsFromState } from '../fetchSagas';
+import { fetchTopStoriesIds, fetchRandomStoryWithComments, fetchNextRandomStory, fetchItemsFromServer, topStoriesIdsFromState } from '../fetchSagas';
 import { call, put, take, select } from 'redux-saga/effects';
 
 import { fetchedStory } from '../../utilities/testHelpers';
@@ -28,19 +28,11 @@ describe('fetchTopStoriesIds saga', () => {
   });
 });
 
-describe('fetchStoryWithComments saga', () => {
-  const saga = fetchStoryWithComments();
+describe('fetchRandomStoryWithComments saga', () => {
+  const saga = fetchRandomStoryWithComments();
   let output = null;
 
-  it('should wait for REQUEST_TOP_STORIES_IDS_SUCCESS', function (done) {
-    output = saga.next().value;
-    let expected = take('REQUEST_TOP_STORIES_IDS_SUCCESS');
-    done();
-
-    expect(output).toEqual(expected);
-  });
-
-  it('should select top stories ids from the store', () => {
+  it('should select random top story id from the store', () => {
     output = saga.next().value;
     let expected = select(topStoriesIdsFromState);
 
@@ -55,9 +47,19 @@ describe('fetchStoryWithComments saga', () => {
     expect(output).toEqual(expected);
   });
 
-  it('should put REQUEST_STORY_WITH_COMMENTS_SUCCESS', function (done) {
+  it('should put REQUEST_STORY_SUCCESS', function (done) {
     output = saga.next(fetchedStory).value;
-    let expected = put({ type: 'REQUEST_STORY_WITH_COMMENTS_SUCCESS', fetchedStory });
+    let expected = put({ type: 'REQUEST_STORY_SUCCESS', fetchedStory });
+    const finished = saga.next().done;
+    done();
+
+    expect(finished).toEqual(true);
+    expect(output).toEqual(expected);
+  });
+
+  it('should put REQUEST_COMMENTS_SUCCESS', function (done) {
+    output = saga.next(fetchedStory).value;
+    let expected = put({ type: 'REQUEST_COMMENTS_SUCCESS', fetchedStory });
     const finished = saga.next().done;
     done();
 
@@ -66,22 +68,23 @@ describe('fetchStoryWithComments saga', () => {
   });
 });
 
-describe('separateStory saga', () => {
-  const saga = fetchStoryWithComments();
+describe('fetchTopStoriesIds saga', () => {
+  const saga = fetchTopStoriesIds();
   let output = null;
 
-  it('should wait for REQUEST_STORY_WITH_COMMENTS_SUCCESS', function (done) {
+  it('should call fetchItemsFromServer', function (done) {
     output = saga.next().value;
-    let expected = take('REQUEST_STORY_WITH_COMMENTS_SUCCESS');
+    let expected = call(fetchItemsFromServer);
     done();
 
     expect(output).toEqual(expected);
   });
 
-  it('should put POPULATE_STORY', function (done) {
+  it('should put REQUEST_TOP_STORIES_IDS_SUCCESS', function (done) {
+    const topStoriesIds = ['1234', '4567', '25679'];
 
-    output = saga.next(fetchedStory).value;
-    let expected = put({ type: 'REQUEST_TOP_STORIES_IDS_SUCCESS', fetchedStory });
+    output = saga.next(topStoriesIds).value;
+    let expected = put({ type: 'REQUEST_TOP_STORIES_IDS_SUCCESS', topStoriesIds });
     const finished = saga.next().done;
     done();
 
@@ -90,26 +93,64 @@ describe('separateStory saga', () => {
   });
 });
 
-describe('separateComments saga', () => {
-  const saga = fetchStoryWithComments();
+describe('fetchStoryOnStarup saga', () => {
+  const saga = fetchTopStoriesIds();
   let output = null;
 
-  it('should wait for REQUEST_STORY_WITH_COMMENTS_SUCCESS', function (done) {
+  it('should wait for REQUEST_TOP_STORIES_IDS_SUCCESS', function (done) {
     output = saga.next().value;
-    let expected = take('REQUEST_STORY_WITH_COMMENTS_SUCCESS');
+    let expected = take('REQUEST_TOP_STORIES_IDS_SUCCESS');
     done();
 
     expect(output).toEqual(expected);
   });
 
-  it('should put POPULATE_COMMENTS', function (done) {
+  it('should call fetchRandomStoryWithComments', function (done) {
+    output = saga.next().value;
+    let expected = call(fetchRandomStoryWithComments);
+    done();
 
-    output = saga.next(fetchedStory).value;
-    let expected = put({ type: 'POPULATE_COMMENTS', fetchedStory });
+    expect(output).toEqual(expected);
+  });
+});
+
+describe('fetchNextRandomStory saga', () => {
+  const saga = fetchNextRandomStory();
+  let output = null;
+
+  it('should wait for REQUEST_STORY_WITH_COMMENTS', function (done) {
+    output = saga.next().value;
+    let expected = take('REQUEST_STORY_WITH_COMMENTS');
+    done();
+
+    expect(output).toEqual(expected);
+  });
+
+  it('should put CLEAR_STORY', function (done) {
+    output = saga.next().value;
+    let expected = put({ type: 'CLEAR_STORY' });
     const finished = saga.next().done;
     done();
 
     expect(finished).toEqual(true);
+    expect(output).toEqual(expected);
+  });
+
+  it('should put CLEAR_COMMENTS', function (done) {
+    output = saga.next().value;
+    let expected = put({ type: 'CLEAR_COMMENTS' });
+    const finished = saga.next().done;
+    done();
+
+    expect(finished).toEqual(true);
+    expect(output).toEqual(expected);
+  });
+
+  it('should call fetchRandomStoryWithComments', function (done) {
+    output = saga.next().value;
+    let expected = call(fetchRandomStoryWithComments);
+    done();
+
     expect(output).toEqual(expected);
   });
 });
