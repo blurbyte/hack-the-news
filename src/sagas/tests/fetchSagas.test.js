@@ -1,5 +1,6 @@
 import { fetchTopStoriesIds, fetchRandomStoryWithComments, fetchNextRandomStory, fetchItemsFromServer, topStoriesIdsFromState } from '../fetchSagas';
 import { call, put, take, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 
 import { fetchedStory } from '../../utilities/testHelpers';
 
@@ -143,6 +144,14 @@ describe('fetchNextRandomStory saga', () => {
     done();
 
     expect(finished).toEqual(true);
+    expect(output).toEqual(expected);
+  });
+
+  it('should delay fetch by 500ms', function (done) {
+    output = saga.next().value;
+    let expected = call(delay, 600);
+    done();
+
     expect(output).toEqual(expected);
   });
 

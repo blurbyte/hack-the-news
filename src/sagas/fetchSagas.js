@@ -1,6 +1,7 @@
 /*eslint no-constant-condition: ["error", { "checkLoops": false }]*/
 import * as types from '../actions/actionTypes';
 import { call, put, fork, take, select, takeLatest } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 
 import { requestTopStoriesIdsSuccess, requestFail } from '../actions/fetchActions';
 import { requestStorySuccess, clearStory } from '../actions/storyActions';
@@ -82,6 +83,8 @@ export function* fetchNextRandomStory() {
       put(clearStory()),
       put(clearComments())
     ];
+
+    yield call(delay, 600);
 
     yield call(fetchRandomStoryWithComments);
   }
